@@ -8,7 +8,7 @@ commonLabels:
 images:
 - name: localhost:5000/bomc/consumer
   newName: localhost:5000/bomc/consumer
-  newTag: 841a799
+  newTag: 581cbd4
 patchesJson6902:
 - path: namespace-patch.json
   target:
