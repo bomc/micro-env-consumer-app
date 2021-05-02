@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.reactive.error.DefaultErrorAttributes;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 
@@ -49,8 +50,8 @@ public class GlobalErrorAttributes extends DefaultErrorAttributes {
 	 */
 	@Override
 	public Map<String, Object> getErrorAttributes(final ServerRequest request, final ErrorAttributeOptions options) {
-		final var error = getError(request);
-		final var errorAttributes = super.getErrorAttributes(request, options);
+		final Throwable error = getError(request);
+		final Map<String, Object> errorAttributes = super.getErrorAttributes(request, options);
 		
 		log.info(LOG_PREFIX + "getErrorAttributes [error=" + error + ", errorAttributes=" + errorAttributes + "]");
 		
@@ -61,7 +62,7 @@ public class GlobalErrorAttributes extends DefaultErrorAttributes {
 			// Handle here application exception, in this case the RootException
 			log.debug(LOG_PREFIX + "getErrorAttribute - Caught an instance of ->" + error.getClass().getName());
 			
-			final var errorStatus = ((RootException) error).getStatus();
+			final HttpStatus errorStatus = ((RootException) error).getStatus();
 			errorAttributes.replace(ErrorAttributeEnum.STATUS.getValue(), errorStatus.value());
 			errorAttributes.replace(ErrorAttributeEnum.ERROR.getValue(), errorStatus.getReasonPhrase());
 		} else {

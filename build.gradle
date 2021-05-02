@@ -17,7 +17,7 @@ group = 'de.bomc.poc'
 // Handled by plugin com.palantir.git-version
 version = gitVersion()
 
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 configurations {
 	compileOnly {
