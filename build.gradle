@@ -17,7 +17,10 @@ group = 'de.bomc.poc'
 // Handled by plugin com.palantir.git-version
 version = gitVersion()
 
-sourceCompatibility = '8'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+//sourceCompatibility = JavaVersion.VERSION_11
+//targetCompatibility = JavaVersion.VERSION_11
 
 configurations {
 	compileOnly {
@@ -114,7 +117,8 @@ jib {
     from {
     	// Base image
         //image = 'adoptopenjdk/openjdk11:jre-11.0.6_10-alpine'
-        image = 'openjdk:11.0.5-slim'
+        //image = 'openjdk:11.0.5-slim'
+        image = 'openjdk:8-alpine'
     }
     to {
     	// Publishing our app to the repository
