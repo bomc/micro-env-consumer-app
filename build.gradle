@@ -118,7 +118,7 @@ jib {
     	// Base image
         //image = 'adoptopenjdk/openjdk11:jre-11.0.6_10-alpine'
         //image = 'openjdk:11.0.5-slim'
-        image = 'openjdk:8-alpine'
+        image = 'adoptopenjdk/openjdk8:jdk8u202-b08-alpine-slim'
     }
     to {
     	// Publishing our app to the repository
