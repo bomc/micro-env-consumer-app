@@ -122,7 +122,7 @@ jib {
     }
     to {
     	// Publishing our app to the repository
-        image = 'localhost:5000/bomc/' + project.name + ':' + project.version
+        image = 'registry.kube-system.svc.cluster.local:80/bomc/consumer/' + project.name + ':' + project.version
         //credHelper = 'secretservice'
         // The image is tagged with latest and the current project.version
         //tags = ['latest', project.version]
