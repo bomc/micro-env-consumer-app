@@ -8,19 +8,16 @@ plugins {
 	// see https://github.com/spasam/spring-boot-build-info
 	id 'com.pasam.gradle.buildinfo' version '0.1.3'
 	
-	id 'com.google.cloud.tools.jib' version '3.0.0'
-	id 'com.palantir.git-version' version '0.12.3'
+	//id 'com.palantir.git-version' version '0.12.3'
 }
 
 group = 'de.bomc.poc'
 
 // Handled by plugin com.palantir.git-version
-version = gitVersion()
+//version = gitVersion()
 
-sourceCompatibility = JavaVersion.toVersion('8')
-targetCompatibility = JavaVersion.toVersion('8')
-//sourceCompatibility = JavaVersion.VERSION_11
-//targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 configurations {
 	compileOnly {
@@ -91,60 +88,19 @@ test {
     }
 }
 
-tasks {
-    build {
-        dependsOn(tasks.jibDockerBuild)
-    }
-}
+//processResources {
+//	// replaces in application.properties file the following content: application.version=@appVersion@
+//    filter(ReplaceTokens, tokens:[appVersion: gitVersion()])
+//}
 
-processResources {
-    filter(ReplaceTokens, tokens:[appVersion: gitVersion()])
-}
-
-task showVersion {
-    doLast {
-        println "\nCurrent version: ${gitVersion()}\n"
-        def details = versionDetails()
-        println "last tag          : ${details.lastTag}"
-        println "commit distance   : ${details.commitDistance}"
-        println "hash              : ${details.gitHash}"
-        println "branch name       : ${details.branchName}"
-        println "is clean tag      : ${details.isCleanTag}"
-    }
-}
-
-jib {
-    from {
-    	// Base image
-        //image = 'adoptopenjdk/openjdk11:jre-11.0.6_10-alpine'
-        //image = 'openjdk:11.0.5-slim'
-        image = 'adoptopenjdk/openjdk8:jdk8u202-b08-alpine-slim'
-    }
-    to {
-    	// Publishing our app to the repository
-        image = 'registry.kube-system.svc.cluster.local:80/bomc/' + project.name + ':' + project.version
-        //credHelper = 'secretservice'
-        // The image is tagged with latest and the current project.version
-        //tags = ['latest', project.version]
-        tags = [project.version]
-    }
-    container {
-    	// Add labels
-    	labels = [maintainer: 'bomc', name: project.name, group: project.group]
-    	// Will be deployed to /simpleApp folder.
-        //appRoot = '/simpleApp'
-        // Add environment
-        environment = [IMAGE_VERSION: project.version]
-        // The application will be limited to 360mb of memory
-        jvmFlags = ['-Xms360m', '-Xmx360m']
-        // The container has port 8080 exposed
-        ports = ['8081']
-
-        //workingDirectory = '/simpleApp'
-        creationTime = 'USE_CURRENT_TIMESTAMP'
-    }
-    allowInsecureRegistries = true
-}
-
-tasks.jibDockerBuild.dependsOn showVersion
-defaultTasks 'jib'
+//task showVersion {
+//    doLast {
+//        println "\nCurrent version: ${gitVersion()}\n"
+//        def details = versionDetails()
+//        println "last tag          : ${details.lastTag}"
+//        println "commit distance   : ${details.commitDistance}"
+//        println "hash              : ${details.gitHash}"
+//        println "branch name       : ${details.branchName}"
+//        println "is clean tag      : ${details.isCleanTag}"
+//    }
+//}
