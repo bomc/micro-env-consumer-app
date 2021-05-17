@@ -6,9 +6,9 @@ bases:
 commonLabels:
   environment: prod
 images:
-- name: localhost:5000/bomc/consumer
-  newName: localhost:5000/bomc/consumer
-  newTag: 021922b
+- name: registry.kube-system.svc.cluster.local:80/bomc/consumer
+  newName: registry.kube-system.svc.cluster.local:80/bomc/consumer
+  newTag: latest
 patchesJson6902:
 - path: namespace-patch.json
   target:
