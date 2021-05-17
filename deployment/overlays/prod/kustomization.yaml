@@ -6,8 +6,8 @@ bases:
 commonLabels:
   environment: prod
 images:
-- name: registry.kube-system.svc.cluster.local:80/bomc/buildah-consumer
-  newName: registry.kube-system.svc.cluster.local:80/bomc/buildah-consumer
+- name: localhost:5000/bomc/buildah-consumer
+  newName: localhost:5000/bomc/buildah-consumer
   newTag: latest
 patchesJson6902:
 - path: namespace-patch.json
