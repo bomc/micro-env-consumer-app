@@ -8,7 +8,7 @@ commonLabels:
 images:
 - name: localhost:5000/bomc/buildah-consumer
   newName: localhost:5000/bomc/buildah-consumer
-  newTag: latest_2
+  newTag: latest_2_2
 patchesJson6902:
 - path: namespace-patch.json
   target:
