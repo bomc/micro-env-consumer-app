@@ -5,10 +5,12 @@ bases:
 - ./../../base/
 commonLabels:
   environment: prod
+
 images:
-- name: registry.kube-system.svc.cluster.local:80/bomc/consumer
+- name: consumer
   newName: registry.kube-system.svc.cluster.local:80/bomc/consumer
-  newTag: latestx
+  newTag: latest
+
 patchesJson6902:
 - path: namespace-patch.json
   target:
