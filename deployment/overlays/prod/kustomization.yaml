@@ -7,7 +7,7 @@ commonLabels:
   environment: prod
 
 images:
-- name: consumer
+- name: registry.kube-system.svc.cluster.local:80/bomc/consumer
   newName: registry.kube-system.svc.cluster.local:80/bomc/consumer
   newTag: latest
 
