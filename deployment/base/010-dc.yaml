@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: consumer
-        image: registry.kube-system.svc.cluster.local/bomc/consumer:OVERRIDEN_IN_OVERLAYS
+        image: localhost:5000/bomc/consumer:OVERRIDEN_IN_OVERLAYS
         imagePullPolicy: IfNotPresent
         resources:
           requests:
