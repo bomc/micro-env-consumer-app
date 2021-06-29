@@ -9,7 +9,7 @@ commonLabels:
 images:
 - name: localhost:5000/bomc/consumer
   newName: localhost:5000/bomc/consumer
-  newTag: v0.0.4
+  newTag: v0.0.5
 
 patchesJson6902:
 - path: namespace-patch.json
