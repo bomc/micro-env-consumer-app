@@ -7,8 +7,8 @@ commonLabels:
   environment: prod
 
 images:
-- name: localhost:5000/bomc/consumer
-  newName: localhost:5000/bomc/consumer
+- name: 192.168.99.144:5000/bomc/consumer
+  newName: 192.168.99.144:5000/bomc/consumer
   newTag: latest
 
 patchesJson6902:
