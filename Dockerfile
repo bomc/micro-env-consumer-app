@@ -18,4 +18,4 @@ COPY --from=builder /app/build/libs/consumer*.jar consumer.jar
 
 EXPOSE 8081
 
-ENTRYPOINT exec java -jar consumer.jar
+ENTRYPOINT  ["exec java -jar consumer.jar"]
