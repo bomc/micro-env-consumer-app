@@ -14,8 +14,8 @@ FROM adoptopenjdk:11-jre-hotspot
 
 WORKDIR /app
 
-COPY --from=builder /app/build/libs/consumer*.jar consumer.jar
+COPY --from=builder /app/build/libs/consumer*.jar /app/consumer.jar
 
 EXPOSE 8081
 
-ENTRYPOINT  ["exec java -jar consumer.jar"]
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/consumer.jar"]
